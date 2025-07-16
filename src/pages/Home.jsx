@@ -1,53 +1,60 @@
-// import SearchBar from '../components/SearchBar';
-// import NotesList from '../components/NotesList';
-// import { useState } from 'react';
-// import ChatStyleSearch from '../components/ChatStyleSearch';
-
-
-// export default function Home() {
-//   const [results, setResults] = useState([]);
-
-//   return (
-//     <div className="home-glass-container">
-//         <div style={{ padding: '2rem' }}>
-//         <section style={{ marginBottom: '2rem' }}>
-//           <h1>📚 College Resource Navigator</h1>
-//           <p>
-//             I'm an AIML student at PESMCOE and I’ve often struggled to find quality,
-//             branch-specific study resources. Materials are scattered, often unavailable
-//             in the market, and difficult to access for juniors.
-//           </p>
-//           <p>
-//             This platform solves that — seniors can upload notes, and juniors can access them easily.
-//             Powered by Firebase, Gemini AI, and Google tools — as part of my GDG On Campus lead initiative.
-//           </p>
-//         </section>
-
-//         {/* <SearchBar setResults={setResults} /> */}
-//         <ChatStyleSearch />
-//         {/* <NotesList results={results} /> */}
-//       </div>
-//     </div> 
-//   );
-// }
-
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { doc, getDoc, updateDoc, increment } from 'firebase/firestore';
+import { db } from '../firebase';
 import ChatStyleSearch from '../components/ChatStyleSearch';
 import NotesList from '../components/NotesList';
+import Tagline from '../components/Tagline';
 
 export default function Home() {
   const [results, setResults] = useState([]);
+  const [viewCount, setViewCount] = useState(null);
+
+  useEffect(() => {
+    const updateAndFetchViews = async () => {
+      const docRef = doc(db, 'analytics', 'siteViews');
+
+      try {
+        // Increment view count
+        await updateDoc(docRef, {
+          count: increment(1),
+        });
+
+        // Fetch updated count
+        const updatedDoc = await getDoc(docRef);
+        if (updatedDoc.exists()) {
+          setViewCount(updatedDoc.data().count);
+        }
+      } catch (err) {
+        console.error('Error updating view count:', err);
+      }
+    };
+
+    updateAndFetchViews();
+  }, []);
 
   return (
     <div className="view-notes-container">
-      <h2 className="view-notes-title">📄 Browse Uploaded Notes</h2>
+      {/* <h2 className="view-notes-title">Seniors Hoard.</h2>
+      <h2 className="view-notes-title"><span className="gradient-text">Edugle </span>. shares.</h2> */}
+      <Tagline line1="Students search." line2="Edugle finds." />
       <p className="view-notes-subtitle">
         Filter by subject, semester, or branch and get study material instantly.
       </p>
 
+      {viewCount !== null && (
+        <p style={{ fontSize: '0.9rem', marginTop: '-1rem', marginBottom: '1rem', color: '#999' }}>
+          👀 {viewCount} total views
+        </p>
+      )}
+
       <ChatStyleSearch setResults={setResults} />
       <NotesList results={results} />
+
+
+      <h2 className="view-notes-title">PYQ section <span className="gradient-text">coming soon</span>. </h2>
+      <p className="view-notes-subtitle">
+        stay tuned.
+      </p>
     </div>
   );
 }

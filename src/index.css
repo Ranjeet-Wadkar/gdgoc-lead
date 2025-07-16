@@ -128,5 +128,14 @@ button:hover {
     color: #ccc;
   }
   
+
+  .gradient-text {
+    background: linear-gradient(90deg, #ff8a00, #e52e71); /* Pick your colors */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text; /* For Firefox */
+    color: transparent;
+    font-weight: bold;
+  }
   
 

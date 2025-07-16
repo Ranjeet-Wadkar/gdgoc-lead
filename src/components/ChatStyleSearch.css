@@ -314,6 +314,130 @@
     color: #00ffe7;
     transform: scale(1.05);
   }
+  .search-mode-toggle-switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
   
+  .active-label {
+    font-weight: 700;
+    color: #e52e71;
+    transition: color 0.3s;
+    letter-spacing: 0.5px;
+  }
+  
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 52px;
+    height: 28px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(90deg, #ff8a00, #e52e71);
+    transition: background 0.5s;
+    border-radius: 34px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.4s cubic-bezier(.4,2.1,.6,.8);
+    box-shadow: 0 2px 8px #e52e7140;
+  }
+  
+  .switch input:checked + .slider {
+    background: linear-gradient(90deg, #e52e71, #ff8a00);
+  }
+  
+  .switch input:checked + .slider:before {
+    transform: translateX(24px);
+  }
 
+  /* 3rddddd */
+  .mode-toggle-outer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .toggleCheckbox {
+    display: none;
+  }
+  
+  .toggleText {
+    flex: 1;
+    text-align: center;
+    z-index: 2;
+    color: #888;
+    font-size: 1.05rem;
+    font-weight: 600;
+    transition: color 0.25s;
+    pointer-events: none;
+  }
+  
+  .toggleText.active {
+    color: #fff;
+  }
+  
+  .toggleContainer {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 150px;
+    height: 48px;
+    /* Glassmorphism */
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 30px;
+    box-shadow: 0 2px 10px rgba(229, 46, 113, 0.18), 0 4px 32px rgba(0,0,0,0.10);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1.5px solid rgba(255,255,255,0.18);
+    overflow: hidden;
+    user-select: none;
+    cursor: pointer;
+    transition: background 0.3s, box-shadow 0.4s;
+  }
+  
+  .toggleSlider {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 68px;
+    height: 40px;
+    background: linear-gradient(90deg, #ff8a00cc, #e52e71cc);
+    border-radius: 24px;
+    z-index: 1;
+    box-shadow: 0 1.5px 8px #e52e7140;
+    transition: transform 0.5s cubic-bezier(.4,2.1,.6,.8), background 0.2s;
+    backdrop-filter: blur(10px) saturate(160%);
+    -webkit-backdrop-filter: blur(10px) saturate(160%);
+    border: 1px solid rgba(255,255,255,0.28);
+    opacity: 0.93;
+  }
+  
+  
+  .toggleCheckbox:checked + .toggleContainer .toggleSlider {
+    transform: translateX(76px);
+    background: linear-gradient(90deg, #e52e71, #ff8a00);
+  }
+  
 

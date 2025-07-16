@@ -1,8 +1,9 @@
 import './UploadForm.css';
-import { useState } from 'react';
+// import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase';
-
+import subjectMap from '../data/subjectMap';
 
 export default function UploadForm() {
   const [title, setTitle] = useState('');
@@ -20,9 +21,21 @@ export default function UploadForm() {
     "CSE", "IT", "AIDS", "AIML", "ECE", "ENTC", "MECH", "ELEC"
   ];
 
-  const subjectOptions = [
-    "CN", "DMW", "OS", "DBMS", "DSA", "AI", "ML", "DL", "TOC", "SE", "COA", "OOP", "Maths", "WT"
-  ]; // You can later filter based on branch/semester
+  // const subjectOptions = [
+  //   "CN", "DMW", "OS", "DBMS", "DSA", "AI", "ML", "DL", "TOC", "SE", "COA", "OOP", "Maths", "WT"
+  // ]; // You can later filter based on branch/semester
+  const [subjectOptions, setSubjectOptions] = useState([]);
+
+  useEffect(() => {
+    if (!branch || !semester) {
+      setSubjectOptions([]);
+    } else if (semester === "1" || semester === "2") {
+      setSubjectOptions(subjectMap.common);
+    } else {
+      setSubjectOptions(subjectMap[branch]?.[semester] || []);
+    }
+  }, [branch, semester]);
+
 
   const handleUpload = async (e) => {
     e.preventDefault();
@@ -84,6 +97,13 @@ export default function UploadForm() {
           ))}
         </select>
   
+        {/* <label>Subject</label>
+        <select value={subject} onChange={(e) => setSubject(e.target.value)} required>
+          <option value="">-- Select Subject --</option>
+          {subjectOptions.map((subj) => (
+            <option key={subj} value={subj}>{subj}</option>
+          ))}
+        </select> */}
         <label>Subject</label>
         <select value={subject} onChange={(e) => setSubject(e.target.value)} required>
           <option value="">-- Select Subject --</option>
@@ -91,6 +111,7 @@ export default function UploadForm() {
             <option key={subj} value={subj}>{subj}</option>
           ))}
         </select>
+
   
         <label>Description</label>
         <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Short description (topics covered, year, etc.)" required />
