@@ -1,0 +1,82 @@
+.upload-form-container {
+    background-color: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1rem;
+    padding: 2rem;
+    max-width: 700px;
+    margin: 2rem auto;
+    color: rgb(255, 255, 255);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.3);
+    transition: all 0.2s ease-in-out; 
+    transform: translateY(0);         
+  }
+  .upload-form-container:hover {
+    transform: translateY(-10px);     /* raise the container on hover */
+    box-shadow: 0 12px 40px rgba(255, 255, 255, 0.2); /* optional glow */
+  }
+  
+  .upload-form-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .upload-form-container label {
+    display: block;
+    margin: 1rem 0 0.3rem;
+    font-weight: 500;
+  }
+  
+  .upload-form-container input,
+  .upload-form-container select,
+  .upload-form-container textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.12);
+    color: rgb(82, 79, 79);
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+    outline: none;
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .upload-form-container textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .upload-form-container button {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 0.75rem;
+    font-size: 1.1rem;
+    color: white;
+    background-color: rgba(17, 25, 40, 0.6);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .upload-form-container button:hover {
+    background-color: rgba(80, 100, 140, 0.4);
+    transform: scale(1.02);
+  }
+  
+  .upload-form-container a {
+    color: #eceded; /* Neon blue or any color you like */
+    text-decoration: underline;
+    transition: color 0.3s ease;
+  }
+  
+  .upload-form-container a:hover {
+    color: #ffffff; /* Changes to white on hover */
+  }
