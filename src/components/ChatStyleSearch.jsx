@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
 import { db } from '../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { extractSearchKeywords } from '../geminiAPI';
 import './ChatStyleSearch.css';
+import subjectMap from '../data/subjectMap';
 
 export default function ChatStyleSearch() {
   const [query, setQuery] = useState('');
@@ -14,6 +16,17 @@ export default function ChatStyleSearch() {
   const [loading, setLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
   const [mode, setMode] = useState('ai'); // 'ai' or 'filter'
+  const [subjectOptions, setSubjectOptions] = useState([]);
+
+  useEffect(() => {
+    if (!branch || !semester) {
+      setSubjectOptions([]);
+    } else if (semester === "1" || semester === "2") {
+      setSubjectOptions(subjectMap.common);
+    } else {
+      setSubjectOptions(subjectMap[branch]?.[semester] || []);
+    }
+  }, [branch, semester]);
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -54,21 +67,6 @@ export default function ChatStyleSearch() {
   return (
     <div className="chat-container">
       <form onSubmit={handleSearch} className="chat-form">
-        {/* <div className="mode-toggle-outer">
-          <input
-            type="checkbox"
-            id="mode-toggle"
-            className="toggleCheckbox"
-            checked={mode === "filter"}
-            onChange={() => setMode(mode === "ai" ? "filter" : "ai")}
-          />
-          <label htmlFor="mode-toggle" className="toggleContainer">
-            <div className={`toggleText ${mode === "ai" ? "active" : ""}`}>Smart</div>
-            <div className={`toggleText ${mode === "filter" ? "active" : ""}`}>Filter</div>
-            <div className="toggleSlider"></div>
-          </label>
-        </div> */}
-
         <div className="gradient-border">
           <div className="input-with-icon-vertical">
             <div className="search-input-container">
@@ -113,7 +111,7 @@ export default function ChatStyleSearch() {
             {/* Filters visible only in 'filter' mode */}
             {mode === 'filter' && (
               <div className="filter-inline-dropdowns">
-                <select value={branch} onChange={(e) => setBranch(e.target.value)}>
+                <select value={branch} onChange={(e) => { setBranch(e.target.value); setSubject(''); }}>
                   <option value="">Branch</option>
                   <option value="CSE">CSE</option>
                   <option value="IT">IT</option>
@@ -124,19 +122,17 @@ export default function ChatStyleSearch() {
                   <option value="MECH">MECH</option>
                   <option value="ELEC">ELEC</option>
                 </select>
-
-                <select value={semester} onChange={(e) => setSemester(e.target.value)}>
+                <select value={semester} onChange={(e) => { setSemester(e.target.value); setSubject(''); }}>
                   <option value="">Semester</option>
-                  {[1, 2, 3, 4, 5, 6, 7, 8].map((sem) => (
+                  {[1,2,3,4,5,6,7,8].map((sem) => (
                     <option key={sem} value={sem}>{sem}</option>
                   ))}
                 </select>
-
                 <select value={subject} onChange={(e) => setSubject(e.target.value)}>
                   <option value="">Subject</option>
-                  <option value="DMW">DMW</option>
-                  <option value="ML">ML</option>
-                  <option value="CN">CN</option>
+                  {subjectOptions.map((subj) => (
+                    <option key={subj} value={subj}>{subj}</option>
+                  ))}
                 </select>
               </div>
             )}

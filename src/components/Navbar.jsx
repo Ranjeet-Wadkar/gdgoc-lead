@@ -85,7 +85,7 @@ export default function Navbar() {
     >
       <Link to="/" className="nav-link">Home</Link>
       {user && <Link to="/upload" className="nav-link">Upload</Link>}
-      <Link to="/about" className="nav-link">About me</Link>
+      <Link to="/about" className="nav-link">About</Link>
       
       {!user && <Link to="/login" className="nav-link">Login</Link>}
       

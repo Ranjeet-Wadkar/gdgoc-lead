@@ -34,8 +34,6 @@ export default function Home() {
 
   return (
     <div className="view-notes-container">
-      {/* <h2 className="view-notes-title">Seniors Hoard.</h2>
-      <h2 className="view-notes-title"><span className="gradient-text">Edugle </span>. shares.</h2> */}
       <Tagline line1="Students search." line2="Edugle finds." />
       <p className="view-notes-subtitle">
         Filter by subject, semester, or branch and get study material instantly.
