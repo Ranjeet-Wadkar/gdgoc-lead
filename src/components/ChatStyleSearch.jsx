@@ -54,36 +54,7 @@ export default function ChatStyleSearch() {
   return (
     <div className="chat-container">
       <form onSubmit={handleSearch} className="chat-form">
-        {/* Mode Toggle */}
-        {/* <div className="search-mode-toggle">
-          <button
-            type="button"
-            className={mode === 'ai' ? 'active' : ''}
-            onClick={() => setMode('ai')}
-          >
-            🤖 Smart Search (Gemini)
-          </button>
-          <button
-            type="button"
-            className={mode === 'filter' ? 'active' : ''}
-            onClick={() => setMode('filter')}
-          >
-            🎯 Filter Search
-          </button>
-        </div> */}
-        {/* <div className="search-mode-toggle-switch">
-          <span className={mode === "ai" ? "active-label" : ""}>🤖 Smart</span>
-          <label className="switch">
-            <input
-              type="checkbox"
-              checked={mode === "filter"}
-              onChange={() => setMode(mode === "ai" ? "filter" : "ai")}
-            />
-            <span className="slider"></span>
-          </label>
-          <span className={mode === "filter" ? "active-label" : ""}>🎯 Filter</span>
-        </div> */}
-        <div className="mode-toggle-outer">
+        {/* <div className="mode-toggle-outer">
           <input
             type="checkbox"
             id="mode-toggle"
@@ -96,10 +67,7 @@ export default function ChatStyleSearch() {
             <div className={`toggleText ${mode === "filter" ? "active" : ""}`}>Filter</div>
             <div className="toggleSlider"></div>
           </label>
-        </div>
-
-
-
+        </div> */}
 
         <div className="gradient-border">
           <div className="input-with-icon-vertical">
@@ -117,6 +85,29 @@ export default function ChatStyleSearch() {
                 placeholder="Ask me for notes... (e.g., sem 5 AIML DMW)"
                 required
               />
+
+              {/* TOGGLE SWITCH INSIDE INPUT CONTAINER */}
+              <div
+                className="search-toggle-inside"
+                style={{
+                  transform: "scale(0.8)",  // uniform shrink
+                  marginTop: "5px",         // move down
+                  marginBottom: "100px"       // move up
+                }}
+              >
+                <input
+                  type="checkbox"
+                  id="mode-toggle"
+                  className="toggleCheckbox"
+                  checked={mode === "filter"}
+                  onChange={() => setMode(mode === "ai" ? "filter" : "ai")}
+                />
+                <label htmlFor="mode-toggle" className="toggleContainer">
+                  <div className={`toggleText ${mode === "ai" ? "active" : ""}`}>Smart</div>
+                  <div className={`toggleText ${mode === "filter" ? "active" : ""}`}>Filter</div>
+                  <div className="toggleSlider"></div>
+                </label>
+              </div>
             </div>
 
             {/* Filters visible only in 'filter' mode */}

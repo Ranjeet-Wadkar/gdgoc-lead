@@ -1,8 +1,3 @@
-/* .input-with-icon-vertical {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-} */
 
 .search-input-container {
   position: relative;
@@ -20,15 +15,6 @@
   opacity: 0.6;
 }
 
-/* .chat-input {
-  width: 100%;
-  padding: 0.8rem 1rem 0.8rem 2.5rem;
-  border: none;
-  border-radius: 12px;
-  font-size: 1rem;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
-} */
 
 .filter-container {
   display: flex;
@@ -98,7 +84,12 @@
   color: white;
 }
 
-
+.search-input-container input::placeholder,
+.search-input-container textarea::placeholder {
+  color: #bdc0bb;              /* Soft grayish/white, change as needed */
+  opacity: 0.8;                  /* Full opacity */
+  font-style: italic;
+}
 .search-icon {
   position: absolute;
   left: 0.8rem;
@@ -124,17 +115,12 @@
 
 
  .chat-container {
-    /* background: linear-gradient(135deg, #1e1e2f, #2b4162); */
     padding: 2rem;
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* backdrop-filter: blur(16px) saturate(180%); 
-    -webkit-backdrop-filter: blur(16px) saturate(180%); */
-    /* background-color: rgba(17, 25, 40, 0.29); */
-    /* border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.125); */
+
   } 
   
   .chat-form {
@@ -155,15 +141,7 @@
     margin-bottom: 1rem;
     transition: all 0.3s ease-in-out;
   }
-  /* .gradient-border {
-    border-radius: 1rem;
-    padding: 2px;
-    background: linear-gradient(90deg, #00f0ff, #004cff);
-    background: linear-gradient(90deg, #00f0ff, #ff00c8);
-    width: 100%;
-    margin-bottom: 1rem;
-    transition: all 0.5s ease-in-out;
-  } */
+
 
   .gradient-border:hover {
     /* background: linear-gradient(90deg, #00f0ff, #004cff); 
@@ -203,18 +181,7 @@
     color: rgb(255, 255, 255);
   }
   
-  /* .filter-dropdowns {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-  
-  .filter-dropdowns select {
-    padding: 0.5rem;
-    border-radius: 6px;
-    border: none;
-  } */
-  
+
   .results-section {
     margin-top: 2rem;
     width: 100%;
@@ -233,22 +200,6 @@
     color: #00d0ff;
     text-decoration: underline;
   }
-
-  /* .search-icon {
-    position: absolute;
-    left: 0rem;
-    top: 40%;
-    transform: translateY(-50%);
-    font-size: 1.2rem;
-    color: #aaa;
-    pointer-events: none;
-  } */
-  /* .input-with-icon {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 100%;
-  } */
   
   .search-img-icon {
     position: absolute;
@@ -387,7 +338,7 @@
     flex: 1;
     text-align: center;
     z-index: 2;
-    color: #888;
+    color: #ffffff;
     font-size: 1.05rem;
     font-weight: 600;
     transition: color 0.25s;
@@ -419,11 +370,12 @@
   
   .toggleSlider {
     position: absolute;
-    top: 4px;
+    align-items: center;
+    top: 2px;
     left: 4px;
     width: 68px;
     height: 40px;
-    background: linear-gradient(90deg, #ff8a00cc, #e52e71cc);
+    background: linear-gradient(90deg, #e8d5bfcc, #e52e71cc);
     border-radius: 24px;
     z-index: 1;
     box-shadow: 0 1.5px 8px #e52e7140;
@@ -431,13 +383,40 @@
     backdrop-filter: blur(10px) saturate(160%);
     -webkit-backdrop-filter: blur(10px) saturate(160%);
     border: 1px solid rgba(255,255,255,0.28);
-    opacity: 0.93;
+    opacity: 0.8;
   }
   
   
   .toggleCheckbox:checked + .toggleContainer .toggleSlider {
     transform: translateX(76px);
-    background: linear-gradient(90deg, #e52e71, #ff8a00);
+    background: linear-gradient(90deg, #e8d5bfcc, #e52e71cc);
+  }
+  .search-toggle-inside {
+    position: absolute;
+    right: -0.5rem;
+    top: -15%;
+    transform: translateY(-50%);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    /* Optional: add glassmorphism */
+    /* background: rgba(255,255,255,0.11);
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(255,255,255,0.14);
+    backdrop-filter: blur(10px) saturate(150%);
+    -webkit-backdrop-filter: blur(10px) saturate(150%);
+    padding: 0 4px;
+    height: 40px; */
   }
   
+  /* Responsive: shrink Smart/Filter text on smaller screens */
+  /* @media (max-width: 600px) {
+    .search-toggle-inside .toggleText {
+      font-size: 0.9rem;
+      padding: 0 2px;
+    }
+    .toggleContainer {
+      width: 110px !important;
+    }
+  } */
 

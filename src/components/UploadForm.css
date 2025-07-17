@@ -36,7 +36,7 @@
     border: none;
     border-radius: 0.75rem;
     background: rgba(255, 255, 255, 0.12);
-    color: rgb(255, 255, 255);
+    color: #78ff09;
     font-size: 1rem;
     margin-bottom: 0.8rem;
     outline: none;
@@ -44,7 +44,15 @@
     -webkit-backdrop-filter: blur(10px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
-  
+  /* For dropdown options: */
+  .upload-form-container select option {
+    background: rgba(41, 64, 139, 0.98);     
+    color: #78ff09;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+  }
   .upload-form-container textarea {
     resize: vertical;
     min-height: 100px;
@@ -79,4 +87,10 @@
   
   .upload-form-container a:hover {
     color: #ffffff; /* Changes to white on hover */
+  }
+  .upload-form-container input::placeholder,
+  .upload-form-container textarea::placeholder {
+    color: #78ff09;              /* Soft grayish/white, change as needed */
+    opacity: 1;                  /* Full opacity */
+    font-style: italic;          /* Optional: makes placeholder a little different */
   }
